@@ -5,7 +5,7 @@ include('DBConn.php');?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Person</title>
+    <title>Update Person</title>
     <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
@@ -46,13 +46,17 @@ include('DBConn.php');?>
                 <div class="card-header text-center">
                 </div>
                 <div class="card-body">
-                    <form action="registerPerson.php" method="post">
+                    <form action="updatePerson.php" method="post">
                         <div class="input-group">
-                            <input type ="text" name="name" placeholder="Name" class="form-control" required >
+                            <input type ="text" name="id" placeholder="PersonID" class="form-control" required>
                         </div>
                         <br>
                         <div class="input-group">
-                        <input type ="text" name="fname" placeholder="FName" class="form-control" required>
+                            <input type ="text" name="name" placeholder="Name" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <input type ="text" name="fname" placeholder="FName" class="form-control">
                         </div>
                         <br>
                         <div class="text-center">
@@ -61,14 +65,19 @@ include('DBConn.php');?>
                     </form>
                 </div>
                 <?php
-                if(isset($_POST['name']) && isset($_POST['fname'])){
-                    $person = array('name'=>$_POST['name'],'fname'=>$_POST['fname']);
+                if(isset($_POST['id']) && (isset($_POST['name']) || isset($_POST['fname']))){
+                    $condition = "id = " .$_POST['id'];
+                    $name = $_POST['name'];
+                    $fName = $_POST['fname'];
+                    $person = array();
+                    !empty($name) ?  $person['name'] = $name : '';
+                    !empty($fName) ?  $person['fname'] = $fName : '';
                     $db = DBConn::getInstance();
                     try {
-                        $db->insert("pessoas", $person);
-                        $ext_message = 'Person registered.';
+                        $db->update("pessoas", $person, $condition);
+                        $ext_message = 'Person updated.';
                     } catch (PDOException $e) {
-                        $ext_message = "Error while registering";
+                        $ext_message = "Error while updating";
                     }
                         
 
