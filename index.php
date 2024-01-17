@@ -15,7 +15,7 @@
                     LOGIN
                 </div>
                 <div class="card-body">
-                    <form action="autentica.php" method="post">
+                    <form action="authenticator.php" method="post">
                         <div class="input-group">
                             <span class="input-group-text">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
