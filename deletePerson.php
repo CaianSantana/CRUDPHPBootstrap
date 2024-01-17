@@ -1,15 +1,15 @@
-<?php
-include('SessionValidator.php');?>
-<!doctype html>
+<?php include('SessionValidator.php');
+include('DBConn.php');?>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Person</title>
     <link rel="stylesheet" href="css/bootstrap.css">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand"><?="Welcome ".$_SESSION['user']."!";?></a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -39,10 +39,44 @@ include('SessionValidator.php');?>
   </div>
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </body>
+    <div class="container vh-100 d-flex align-items-center">
+        <div class="col-md-4"></div> 
+        <div class="col-md-4 mx-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                </div>
+                <div class="card-body">
+                    <form action="deletePerson.php" method="post">
+                        <div class="input-group">
+                            <input type ="text" name="id" placeholder="Person ID" class="form-control" required >
+                        </div>
+                        <br>
+                        <div class="text-center">
+                        <button type="submit" class="btn btn-primary" name="submit">DELETE</button>
+                        </div>
+                    </form>
+                </div>
+                <?php
+                if(isset($_POST['id'])){
+                    $personID = "id=". $_POST['id'];
+                    $db = DBConn::getInstance();
+                    try {
+                        $db->delete("pessoas", $personID);
+                        $ext_message = 'Person deleted.';
+                    } catch (PDOException $e) {
+                        $ext_message = "Error while deleting";
+                    }
+                ?>
+                <div class="card-footer text-center">
+                    <?php echo $ext_message;?>
+                </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+        <div class="col-md-4"></div> 
+    </div>
+
+</body>
 </html>
-
-
-
-
-

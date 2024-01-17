@@ -24,7 +24,7 @@ include('DBConn.php');?>
                         <li><a class="dropdown-item" href="registerPerson.php">Register</a></li>
                         <li><a class="dropdown-item" href="listPerson.php">List</a></li>
                         <li><a class="dropdown-item" href="#">Update</a></li>
-                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                        <li><a class="dropdown-item" href="deletePerson.php">Delete</a></li>
                     </ul>
                 </div>
             </ul>
