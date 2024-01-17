@@ -59,7 +59,7 @@ class DBConn{
         $columns = implode(", ", array_keys($data));
         $values = ":". implode(", :", array_keys($data));
         try {
-            $sql = "INSERT INT $tableNme ($columns) VALUES ($values)";
+            $sql = "INSERT INTO $tableName ($columns) VALUES ($values)";
             $statement = $this->connection->prepare($sql);
             $statement->execute($data);
             return $this->connection->lastInsertId();
@@ -68,7 +68,7 @@ class DBConn{
         }
     }
 
-    public function delete($tableNme, $condition){
+    public function delete($tableName, $condition){
         try{
             $sql = "DELETE FROM $tableName WHERE $condition";
             $statement = $this->connection->prepare($sql);

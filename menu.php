@@ -21,8 +21,8 @@ include('SessionValidator.php');?>
                         Person
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Register</a></li>
-                        <li><a class="dropdown-item" href="#">List</a></li>
+                        <li><a class="dropdown-item" href="registerPerson.php">Register</a></li>
+                        <li><a class="dropdown-item" href="listPerson.php">List</a></li>
                         <li><a class="dropdown-item" href="#">Update</a></li>
                         <li><a class="dropdown-item" href="#">Delete</a></li>
                     </ul>
