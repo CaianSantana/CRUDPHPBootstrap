@@ -45,7 +45,7 @@
                 if(isset($_GET['msg'])){
                     $ext_message = $_GET['msg'] == 'login_error' ? 'Invalid User or Password.' : 'You need to login.';
                 ?>
-                <div class="card-footer">
+                <div class="card-footer text-center">
                     <?php echo $ext_message;?>
                 </div>
                 <?php
